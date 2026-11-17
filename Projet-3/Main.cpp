@@ -5,22 +5,22 @@
 #include<filesystem>
 #include <stdio.h>
 
+
+
 int main()
 {
-    std::cout
+    std::cout                               //Arg.cpp
         << "Working Directory : "
         << std::filesystem::current_path()
         << '\n';
 
-    size_t file_size = fopen("test.images/Apple.bmp", "rb");
+  FILE* bmpFile= fopen("test_images/Apple.bmp", "rb");
    
-        if (file_size) {
+        if (bmpFile) {
             std::cout << "File exists" << std::endl;
-			fclose(fopen("test.images/Apple.bmp", "rb"));
+			fclose(bmpFile);
         }
         else {
             std::cout << "File does not exist" << std::endl;
         }
-
-    
 }
