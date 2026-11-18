@@ -3,23 +3,24 @@
 #include <string>
 #include<filesystem>
 #include <stdio.h>
+#include"Bmp.h"
 
 int main()
 {
-    std::cout
+    std::cout                               //Arg.cpp
         << "Working Directory : "
         << std::filesystem::current_path()
         << '\n';
 
-    size_t file_size = fopen("test.images/Apple.bmp", "rb");
+    std::string filePath = "test_images/Apple.bmp";
+    FILE* bmpFile=fopen(filePath.c_str(), "rb");
    
-        if (file_size) {
+        if (bmpFile) {
             std::cout << "File exists" << std::endl;
-			fclose(fopen("test.images/Apple.bmp", "rb"));
+			fclose(bmpFile);
         }
         else {
-            std::cout << "File does not exist" << std::endl;
+			;
+            std::cout << filePath << " can not be opened" << std::endl;
         }
-
-    
 }
