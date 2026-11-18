@@ -4,8 +4,7 @@
 #include <string>
 #include<filesystem>
 #include <stdio.h>
-
-
+#include"Bmp.h"
 
 int main()
 {
@@ -14,13 +13,15 @@ int main()
         << std::filesystem::current_path()
         << '\n';
 
-  FILE* bmpFile= fopen("test_images/Apple.bmp", "rb");
+    std::string filePath = "test_images/Apple.bmp";
+    FILE* bmpFile=fopen(filePath.c_str(), "rb");
    
         if (bmpFile) {
             std::cout << "File exists" << std::endl;
 			fclose(bmpFile);
         }
         else {
-            std::cout << "File does not exist" << std::endl;
+			;
+            std::cout << filePath << " can not be opened" << std::endl;
         }
 }
