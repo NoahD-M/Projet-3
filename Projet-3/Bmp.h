@@ -1,5 +1,11 @@
 #pragma once
-class Bmp
+#include <cstdint>
+#include <cstddef>
+
+class BmpImage
 {
+
+
 };
+
 
