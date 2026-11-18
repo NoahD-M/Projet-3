@@ -139,14 +139,12 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Arg.cpp" />
     <ClCompile Include="Bmp.cpp" />
     <ClCompile Include="CommandLine.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Stego.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Arg.h" />
     <ClInclude Include="Bmp.h" />
     <ClInclude Include="CommandLine.h" />
     <ClInclude Include="Stego.h" />

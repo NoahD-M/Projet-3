@@ -7,7 +7,7 @@
 
 int main()
 {
-    std::cout                               //Arg.cpp
+    std::cout                              //bmp.cpp
         << "Working Directory : "
         << std::filesystem::current_path()
         << '\n';
