@@ -1,4 +1,5 @@
 #include "Bmp.h"
-#include<stdio.h>
-
+#include<cstdio>
+#include <cstring>
+#include <cmath>
 
