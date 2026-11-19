@@ -149,7 +149,11 @@
     <ClInclude Include="Bmp.h" />
     <ClInclude Include="CommandLine.h" />
     <ClInclude Include="key.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Stego.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Projet-3.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
