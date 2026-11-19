@@ -35,7 +35,33 @@ bool CommandLineParse(int argc, char* argv[], CommandLineArguments& args, std::s
     }
 }
 
-bool CommandLineValidate(const CommandLineArguments& args, std::string& error) {
-    
+bool CommandLineVerify(const CommandLineArguments& args, std::string& error) {
+	if (args.option == CommandLineOption::ENCODE_FILE) {
+		if (args.source.empty()) {
+			error = "Source file is required for encoding\n";
+			return false;
+		}
+		if (args.destination.empty()) {
+			error = "Destination file is required for encoding\n";
+			return false;
+		}
+		if (args.message.empty()) {
+			error = "Message is required for encoding\n";
+			return false;
+		}
+	}
+	else if (args.option == CommandLineOption::DECODE_FILE) {
+		if (args.source.empty()) {
+			error = "Source file is required for decoding\n";
+			return false;
+		}
+	}
 }
-
+bool CommandLineExecute(const CommandLineArguments& args, std::string& error) {
+	if (args.option == CommandLineOption::ENCODE_FILE) {
+		// Call the function to encode the message into the source file and save it to the destination file
+	}
+	else if (args.option == CommandLineOption::DECODE_FILE) {
+		// Call the function to decode the message from the source file
+	}
+}

@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
 
-class CommandLine
-{
-};
+//class CommandLine
+//{
+//};
 
 enum class CommandLineOption
 {
@@ -23,4 +23,5 @@ struct CommandLineArguments
 };
 
 bool CommandLineParse(int argc, char* argv[], CommandLineArguments& args, std::string& error);
-bool CommandLineValidate(const CommandLineArguments& args, std::string& error);
+bool CommandLineVerify(const CommandLineArguments& args, std::string& error);
+bool CommandLineExecute(const CommandLineArguments& args, std::string& error);
