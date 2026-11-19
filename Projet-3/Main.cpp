@@ -20,7 +20,6 @@ int main()
 			fclose(bmpFile);
         }
         else {
-			;
             std::cout << filePath << " can not be opened" << std::endl;
         }
 }
