@@ -57,14 +57,13 @@ bool CommandLineVerify(const CommandLineArguments& args, std::string& error) {
 		}
 	}
 }
-bool CommandLineExecute(const CommandLineArguments& args, std::string& error) {
+void CommandLineExecute(const CommandLineArguments& args, std::string& error) {
 	if (args.option == CommandLineOption::ENCODE_FILE) {
 		// Call the function to encode the message into the source file and save it to the destination file
-		return true;
+		return;
 	}
 	else if (args.option == CommandLineOption::DECODE_FILE) {
 		// Call the function to decode the message from the source file
-		return true;
+		return;
 	}
-	return false;
 }
