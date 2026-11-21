@@ -4,8 +4,9 @@
 #include<filesystem>
 #include <stdio.h>
 #include"Bmp.h"
+#include "CommandLine.h"
 
-int main()
+int main(int argc, char* argv[])
 {
     std::cout                              //bmp.cpp
         << "Working Directory : "
@@ -22,4 +23,6 @@ int main()
         else {
             std::cout << filePath << " can not be opened" << std::endl;
         }
+
+        return 0;
 }

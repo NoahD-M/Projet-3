@@ -22,6 +22,7 @@ struct CommandLineArguments
 
 };
 
-void CommandLineExecute(const CommandLineArguments& args, std::string& error);
+
 bool CommandLineParse(int argc, char* argv[], CommandLineArguments& args, std::string& error);
 bool CommandLineVerify(const CommandLineArguments& args, std::string& error);
+void CommandLineExecute(const CommandLineArguments& args, std::string& error);

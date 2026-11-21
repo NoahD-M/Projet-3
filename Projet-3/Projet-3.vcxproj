@@ -141,16 +141,16 @@
   <ItemGroup>
     <ClCompile Include="Bmp.cpp" />
     <ClCompile Include="CommandLine.cpp" />
-    <ClCompile Include="key.cpp" />
+    <ClCompile Include="XOR.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Stego.cpp" />
+    <ClCompile Include="Stegano.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bmp.h" />
     <ClInclude Include="CommandLine.h" />
-    <ClInclude Include="key.h" />
+    <ClInclude Include="XOR.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Stego.h" />
+    <ClInclude Include="Stegano.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Projet-3.rc" />

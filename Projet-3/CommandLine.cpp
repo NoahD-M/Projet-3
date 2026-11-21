@@ -7,7 +7,7 @@ bool CommandLineParse(int argc, char* argv[], CommandLineArguments& args, std::s
     if (argc < 2)
     {
         error = "Missing command\n";
-        return 1;
+        return false;
     }
 
     std::string command = argv[1];
@@ -17,7 +17,7 @@ bool CommandLineParse(int argc, char* argv[], CommandLineArguments& args, std::s
         if (argc != 5)
         {
             error = "Invalid encode arguments\n";
-            return 1;
+            return false;
         }
     }
     else if (command == "decode")
@@ -25,14 +25,15 @@ bool CommandLineParse(int argc, char* argv[], CommandLineArguments& args, std::s
         if (argc != 3)
         {
             error = "Invalid decode arguments\n";
-            return 1;
+            return false;
         }
     }
     else
     {
         error = "Unknown command\n";
-        return 1;
+		return false;
     }
+	return true;
 }
 
 bool CommandLineVerify(const CommandLineArguments& args, std::string& error) {
@@ -56,7 +57,9 @@ bool CommandLineVerify(const CommandLineArguments& args, std::string& error) {
 			return false;
 		}
 	}
+	return true;
 }
+
 void CommandLineExecute(const CommandLineArguments& args, std::string& error) {
 	if (args.option == CommandLineOption::ENCODE_FILE) {
 		// Call the function to encode the message into the source file and save it to the destination file
