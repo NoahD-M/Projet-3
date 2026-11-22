@@ -4,25 +4,6 @@ Outil en ligne de commande qui **cache un message texte dans une image BMP** et 
 L'image produite reste lisible et les modifications sont invisibles à l'œil nu (au plus ±1 sur certaines composantes de couleur).
 
 Projet réalisé dans le cadre du module *GTech 1 – Game Programming* (Gaming Campus, 2026-2027) par **Astor** et **Noah**.
-
----
-
-## Sommaire
-
-1. [Compilation](#compilation)
-2. [Commandes](#commandes)
-3. [Format supporté](#format-supporté)
-4. [Organisation du code](#organisation-du-code)
-5. [Métadonnées embarquées et ordre de parcours](#métadonnées-embarquées-et-ordre-de-parcours)
-6. [Capacité](#capacité)
-7. [Chiffrement XOR](#chiffrement-xor)
-8. [Gestion des erreurs](#gestion-des-erreurs)
-9. [Démonstration](#démonstration)
-10. [Vérification (scénarios exécutés)](#vérification-scénarios-exécutés)
-11. [Limitations et défauts connus](#limitations-et-défauts-connus)
-12. [Sources](#sources)
-13. [Répartition du travail](#répartition-du-travail)
-
 ---
 
 ## Compilation
