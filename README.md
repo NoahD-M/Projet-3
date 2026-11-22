@@ -7,8 +7,8 @@ Visual Studio 2026 C++20
 
 Commmands:
 help,
-encode,
-decode,
+encode Test_images/Apple.bmp "message" "key",
+decode Test_images/Apple.bmp "message" "key",
 else: Unknown command,
 
 
