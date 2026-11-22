@@ -3,6 +3,8 @@ Astor Noah D-M
 
 Building:
 Visual Studio 2026 C++20
+.gitignore
+.gitattributes
 
 
 Commands:
