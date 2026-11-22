@@ -10,20 +10,20 @@ int main(int argc, char* argv[])
 
     if (!CommandLineParse(argc, argv, args, error))
     {
-        std::cerr << error;
+        std::cout << "Error: " << error;
         return 1;
     }
 
     if (!CommandLineVerify(args, error))
     {
-        std::cerr << error;
+        std::cout << "Error: " << error;
         return 1;
     }
 
     CommandLineExecute(args, error);
     if (!error.empty())
     {
-        std::cerr << error;
+        std::cout << "Error: " << error;
         return 1;
     }
 
