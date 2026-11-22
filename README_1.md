@@ -3,7 +3,7 @@
 Outil en ligne de commande qui **cache un message texte dans une image BMP** et le **récupère**, avec un chiffrement **XOR** optionnel par clé répétée.
 L'image produite reste lisible et les modifications sont invisibles à l'œil nu (au plus ±1 sur certaines composantes de couleur).
 
-Projet réalisé dans le cadre du module *GTech 1 – Game Programming* (Gaming Campus, 2026-2027) par **Astor** et **Noah**.
+Astor et Noah D-M
 ---
 
 ## Compilation
