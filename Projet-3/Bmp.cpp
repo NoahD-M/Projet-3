@@ -1,71 +1,104 @@
 #include "Bmp.h"
-#include<cstdio>
-#include <cstring>
-#include <cmath>
+#include <fstream>
 
-bool BmpImage::loadImage(const char* filename)
+std::uint16_t readUint16(const std::vector<std::uint8_t>& data, std::size_t offset)
 {
-	if (!filename) return false;
+	return static_cast<std::uint16_t>(
+		data[offset] |
+		(data[offset + 1] << 8)
+		);
+}
 
-	std::FILE* file = std::fopen(filename, "rb");
-	if (!file) {
+std::uint32_t readUint32(const std::vector<std::uint8_t>& data, std::size_t offset)
+{
+	return static_cast<std::uint32_t>(data[offset]) |
+		(static_cast<std::uint32_t>(data[offset + 1]) << 8) |
+		(static_cast<std::uint32_t>(data[offset + 2]) << 16) |
+		(static_cast<std::uint32_t>(data[offset + 3]) << 24);
+}
+
+bool BmpImage::loadImage(const std::string& filename)
+{
+	if (filename.empty())
+	{
 		return false;
 	}
 
-	std::fseek(file, 0, SEEK_END);
-	long fileSize = std::ftell(file);
-	std::fseek(file, 0, SEEK_SET);
+	std::ifstream file(filename, std::ios::binary);
+	if (!file.is_open())
+	{
+		return false;
+	}
 
-	if (fileSize < 54) {
-		std::fclose(file);
+	file.seekg(0, std::ios::end);
+	std::streampos fileSize = file.tellg();
+	file.seekg(0, std::ios::beg);
+
+	if (fileSize < 54)
+	{
+		file.close();
 		return false;
 	}
 
 	bytes.resize(static_cast<std::size_t>(fileSize));
-	std::size_t bytesRead = std::fread(bytes.data(), 1, bytes.size(), file);
-	std::fclose(file);
+	file.read(reinterpret_cast<char*>(bytes.data()), bytes.size());
+	std::streamsize bytesRead = file.gcount();
+	file.close();
 
-	if (bytesRead != bytes.size()) {
+	if (static_cast<std::size_t>(bytesRead) != bytes.size())
+	{
 		return false;
 	}
 
-	if (bytes[0] != 'B' || bytes[1] != 'M') {
+	if (bytes[0] != 'B' || bytes[1] != 'M')
+	{
 		return false;
 	}
 
-	std::uint16_t bitsPerPixel = 0;
-	std::memcpy(&pixelOffset, bytes.data() +10, sizeof(pixelOffset));
-	std::memcpy(&width, bytes.data() + 18, sizeof(width));
-	std::memcpy(&height, bytes.data() + 22, sizeof(height));
-	std::memcpy(&bitsPerPixel, bytes.data() + 28, sizeof(bitsPerPixel));
+	pixelOffset = readUint32(bytes, 10);
+	std::uint32_t dibHeaderSize = readUint32(bytes, 14);
+	width = static_cast<std::int32_t>(readUint32(bytes, 18));
+	height = static_cast<std::int32_t>(readUint32(bytes, 22));
+	std::uint16_t planes = readUint16(bytes, 26);
+	std::uint16_t bitsPerPixel = readUint16(bytes, 28);
+	std::uint32_t compression = readUint32(bytes, 30);
 
-	if (width <= 0 || height == 0 || bitsPerPixel == 0) {
+	if (dibHeaderSize != 40 || planes != 1 || bitsPerPixel != 24 || compression != 0)
+	{
 		return false;
 	}
 
-	rowStride = ((static_cast<std::size_t>(width) * bitsPerPixel + 31) / 32) * 4;
-	std::size_t absHeight = static_cast<std::size_t>(std::llabs(static_cast<long long>(height)));
+	if (width <= 0 || height <= 0 || pixelOffset < 54)
+	{
+		return false;
+	}
 
-	if (static_cast<std::size_t>(pixelOffset) + absHeight * rowStride > bytes.size()) {
+	rowStride = (static_cast<std::size_t>(width) * 3 + 3) / 4 * 4;
+
+	if (static_cast<std::size_t>(pixelOffset) + static_cast<std::size_t>(height) * rowStride > bytes.size())
+	{
 		return false;
 	}
 
 	return true;
 }
 
-bool BmpImage::saveImage(const char* filename) const
+bool BmpImage::saveImage(const std::string& filename) const
 {
-	if (!filename || bytes.empty()) {
+	if (filename.empty() || bytes.empty())
+	{
 		return false;
 	}
 
-	std::FILE* file = std::fopen(filename, "wb");
-	if (!file) {
+	std::ofstream file(filename, std::ios::binary);
+	if (!file.is_open())
+	{
 		return false;
 	}
 
-	std::size_t bytesWritten = std::fwrite(bytes.data(), 1, bytes.size(), file);
-	std::fclose(file);
+	file.write(reinterpret_cast<const char*>(bytes.data()), bytes.size());
+	bool ok = file.good();
+	file.close();
 
-	return bytesWritten == bytes.size();
+	return ok;
 }
