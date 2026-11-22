@@ -1,7 +1,4 @@
 #pragma once
 #include <string>
 
-class key
-{
-};
-
+std::string applyXor(const std::string& message, const std::string& key);

@@ -1,28 +1,31 @@
 #include <iostream>
-#include <fstream>
 #include <string>
-#include<filesystem>
-#include <stdio.h>
-#include"Bmp.h"
+#include "Bmp.h"
 #include "CommandLine.h"
 
 int main(int argc, char* argv[])
 {
-    std::cout                              //bmp.cpp
-        << "Working Directory : "
-        << std::filesystem::current_path()
-        << '\n';
+    CommandLineArguments args;
+    std::string error;
 
-    std::string filePath = "test_images/Apple.bmp";
-    FILE* bmpFile=fopen(filePath.c_str(), "rb");
-   
-        if (bmpFile) {
-            std::cout << "File exists" << std::endl;
-			fclose(bmpFile);
-        }
-        else {
-            std::cout << filePath << " can not be opened" << std::endl;
-        }
+    if (!CommandLineParse(argc, argv, args, error))
+    {
+        std::cerr << error;
+        return 1;
+    }
 
-        return 0;
+    if (!CommandLineVerify(args, error))
+    {
+        std::cerr << error;
+        return 1;
+    }
+
+    CommandLineExecute(args, error);
+    if (!error.empty())
+    {
+        std::cerr << error;
+        return 1;
+    }
+
+    return 0;
 }
