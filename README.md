@@ -5,7 +5,7 @@ Building:
 Visual Studio 2026 C++20
 
 
-Commmands:
+Commands:
 help,
 encode Test_images/Apple.bmp "message" "key",
 decode Test_images/Apple.bmp "message" "key",
